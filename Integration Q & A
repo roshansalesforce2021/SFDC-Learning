@@ -1,0 +1,595 @@
+Salesforce Integration Interview Questions And Answers
+
+What is Integration?
+Integration is a process of connecting two applications. A typical enterprise uses many applications, many or most of which are not designed to work with one another out of the box. Integrating separate but related apps helps organizations achieve greater levels of operational consistency, efficiency, and quality. Each application can have data, business logic, presentation, and security layers, all of which are possible targets for integration. This page is an overall launch point for exploring the various integration options related to Force.com and other Salesforce platform technologies.
+What are possible Ways to Integrate with Salesforce Force.com?
+User Interface Integration: Combine the UIs of two or more apps to create composite apps with little or no rework on the UI of each individual app. One example is using force.com Canvas
+Business Logic Integration: It uses Apex Web Services for Inbound and Apex Callouts for Outbound. It typically handles a scenario where business logic is spread across several applications to implement the complete end-to-end business process. An example would be building complex logic on the data received before committing it into Salesforce.
+Data Integration:It uses SOAP APIs and REST APIs. It typically handles data synchronization requirements, where one application in an enterprise acts as the primary source for a particular business object, like Account.
+What is webservices?
+Webservices is a functionality or code which helps us to do integration. Web services are open standard (XML, SOAP, HTTP, etc.) based web applications that interact with other web applications for the purpose of exchanging data. Web services can convert your existing applications into web applications.
+What is Protocol ?
+Protocol is a set of mutually accepted and implemented rules at both ends of the communications channel for the proper exchange of information.
+How many types of API's are available in salesforce?
+REST API
+SOAP API
+Bulk API
+Streaming API
+Metadata API
+Chatter REST API
+User Interface API
+Analytics REST API
+Apex REST API
+Apex SOAP API
+Tooling API
+ 
+When to Use REST API
+REST API provides a powerful, convenient, and simple REST-based web services interface for interacting with Salesforce. Its advantages include ease of integration and development, and it’s an excellent choice of technology for use with mobile applications and web projects. For certain projects, you may want to use REST API with other Salesforce REST APIs. To build UI for creating, reading, updating, and deleting records, including building UI for list views, actions, and dependent picklists, use User Interface API. To build UI for Chatter, communities, or recommendations, use Chatter REST API. If you have many records to process, consider using Bulk API, which is based on REST principles and optimized for large sets of data.
+When to Use SOAP API
+SOAP API provides a powerful, convenient, and simple SOAP-based web services interface for interacting with Salesforce. You can use SOAP API to create, retrieve, update, or delete records. You can also use SOAP API to perform searches and much more. Use SOAP API in any language that supports web services.
+For example, you can use SOAP API to integrate Salesforce with your org’s ERP and finance systems. You can also deliver real-time sales and support information to company portals and populate critical business systems with customer information.
+When to Use Chatter REST API
+Use Chatter REST API to display Chatter feeds, users, groups, and followers, especially in mobile applications. Chatter REST API also provides programmatic access to files, recommendations, topics, notifications, Data.com purchasing, and more. Chatter REST API is similar to APIs offered by other companies with feeds, such as Facebook and Twitter, but it also exposes Salesforce features beyond Chatter.
+When to Use Streaming API
+Use Streaming API to receive near-real-time streams of data that are based on changes in Salesforce records or custom payloads. For Salesforce record changes, Salesforce publishes notifications when the changes occur. For custom notifications, you can publish event messages. Subscribers can receive notifications using CometD—an implementation of the Bayeux protocol that simulates push technology. Clients can subscribe to some types of events with Apex triggers or declaratively with Process Builder and flows.
+When to Use Apex REST API
+Use Apex REST API when you want to expose your Apex classes and methods so that external applications can access your code through REST architecture. Apex REST API supports both OAuth 2.0 and Session ID for authorization.
+When to Use Apex SOAP API
+Use Apex SOAP API when you want to expose Apex methods as SOAP web service APIs so that external applications can access your code through SOAP.
+Apex SOAP API supports both OAuth 2.0 and Session ID for authorization.
+When to Use Tooling API
+Use Tooling API to integrate Salesforce metadata with other systems. Metadata types are exposed as sObjects, so you can access one component of a complex type. This field-level access speeds up operations on complex metadata types. You can also build custom development tools for Force.com applications. For example, use Tooling API to manage and deploy working copies of Apex classes and triggers and Visualforce pages and components. You can also set checkpoints or heap dump markers, execute anonymous Apex, and access logging and code coverage information.
+What is Call In and Call Out?
+Call In is used to expose our webservices to another system.
+Call out enables you to tightly integrate your Apex with an external service by making a call to an external Web service or sending a HTTP request from Apex code and then receiving the response.
+What is WSDL ?
+WSDL (Web Services Description Language) is an XML document that describes a web service. WSDL is derived from Microsoft’s Simple Object Access Protocol (SOAP) and IBM’s Network Accessible Service Specification Language (NASSL). WSDL replaces both NASSL and SOAP as the means of expressing business services in the UDDI registry. It is used in combination with SOAP and XML Schema to provide web services over the Internet. A client program connecting to a web service can read the WSDL to determine what functions are available on the server. Any special data types used are embedded in the WSDL file in the form of XML Schema. The client can then use SOAP to actually call one of the functions listed in the WSDL. There are two types of WSDL in  Salesforce:
+Enterprise WSDL
+Partner WSDL
+What is the difference between Enterprise WSDL and Partner WSDL?
+Enterprise WSDL
+The Enterprise WSDL is strongly typed.
+The Enterprise WSDL is tied (bound) to a specific configuration of Salesforce (ie. a specific organization’s Salesforce configuration).
+The Enterprise WSDL changes if modifications (e.g custom fields or custom objects) are made to an organization’s Salesforce configuration.
+Partner WSDL
+The Partner WSDL is loosely typed.
+The Partner WSDL can be used to reflect against/interrogate any configuration of Salesforce (ie. any organization’s Salesforce configuration).
+The Partner WSDL is static, and hence does not change if modifications are made to an organization’s Salesforce configuration.
+How SOAP can be accessed ?
+SOAP can be communicated through WSDL file, without WSDL file we can’t do integration.
+Message format in SOAP is XML
+How to generate a WSDL file?
+Go to Setup -> Develop  -> apex classes
+Click on Apex class
+Click on Generate WSDL button
+Generate WSDL code from class
+Save as .wsdl file in your system
+ 
+ 
+How to consume external WSDL file
+In the application, from Setup, enter Apex Classes in the Quick Find box, then select Apex Classes.
+Click Generate from WSDL.
+Click Browse to navigate to a WSDL document on your local hard drive or network, or type in the full path. This WSDL document is the basis for the Apex class you are creating.
+Click Parse WSDL to verify the WSDL document contents. The application generates a default class name for each namespace in the WSDL document and reports any errors. Parsing fails if the WSDL contains schema types or constructs that aren’t supported by Apex classes, or if the resulting classes exceed the 1 million character limit on Apex classes. For example, the Salesforce SOAP API WSDL cannot be parsed.
+Modify the class names as desired. While you can save more than one WSDL namespace into a single class by using the same class name for each namespace, Apex classes can be no more than 1 million characters total.
+Click Generate Apex. The final page of the wizard shows which classes were successfully generated, along with any errors from other classes. The page also provides a link to view successfully generated code.
+What are remote site settings ?
+Remote site settings is used to authorize the endpoint and allow us to whom integrate(end user)
+How manys ways to parse XML parsing ?
+They are two ways of XML parsing
+1. XML streams
+2. XML DOM
+How to read root elements in XML DOM ?
+getroot element
+How to read child elements in XML DOM ?
+getchild element
+How to read all child elements in XML DOM ?
+getchild elements
+How to read text between tags ?
+gettext
+How will SOAP and REST will Communicate ?
+SOAP will communicate through WSDL files.
+REST will communicate through HTTP protocol.
+What are methods in REST
+HTTPGET : Retrieve data identified by a URL.
+HTTPPOST : Create a resource or post data to the server.
+HTTPDELETE : Delete a resource identified by a URL.
+HTTPPUT : Create or replace the resource sent in the request body.
+ 
+What is the difference between SOAP and REST?
+SOAP API: The Simple Object Access Protocol (SOAP) is an attempt to define a standard for creating web service APIs. It is a pattern, a web service architecture, which specifies the basic rules to be considered while designing web service platforms. It typically uses HTTP as a layer 7 protocol, although this is not mandatory.
+The SOAP message itself consists of an envelope, inside of which are the SOAP headers and body, the actual information we want to send. It is based on the standard XML format, designed especially to transport and store structured data. SOAP may also refer to the format of the XML that the envelope uses. SOAP is a mature standard and is heavily used in many systems, but it does not use many of the functionality built in HTTP. While some consider it slow, it provides a heavy set of functionality which is a necessity in many cases. It might now be the best solution for browser-based clients, due to its custom format.
+Supports data in the form of XML only and not JSON.
+Requires WSDL for the integration
+Use SOAP API in any language that supports Web services.
+ 
+REST API: The Representational State Transfer (REST) is another architectural pattern (resource-oriented), an alternative to SOAP. Unlike SOAP, RESTful applications use the HTTP build-in headers (with a variety of media-types) to carry meta information and use the GET, POST, PUT and DELETE verbs to perform CRUD operations. REST is resource-oriented and uses clean URLs (or RESTful URLs).
+Supports both XML and JSON format
+Preferred for mobile and web apps since JSON being Lighter the app runs smoother and faster
+ 
+What is JSON ?
+JSON stands for JavaScript Object Notation. JSON is lightweight than XML.  When exchanging data between a browser and a server, the data can only be text. JSON is text, and we can convert any JavaScript object into JSON, and send JSON to the server.
+1. Define the integration pattern.
+Integration pattern is a standardized methodology used for integrating data with the systems. This method provides a proven way to solve and evaluate problems during integration without reinventing the wheel.
+2. Name the four types of integration patterns.
+The four integration pattern types are:
+Point-to-point integration.
+Hub and spoke integration.
+API gateway integration.
+Event-Driven architecture integration.
+3. Define the common Integration Design Patterns of the Salesforce Platform.
+The common Integration Design Patterns are:
+Application Integration - Functionality and feature integration across systems.
+Data integration - Synchronization and data integration between more than two systems.
+Process Integration - Extend service and business processes across systems.
+4. What is the minimum requirement of test coverage for the deployment of triggers?
+To deploy your code to production, you must ensure that all the unit tests have successfully been carried out on 75% of your Apex code. 
+ 
+ 
+5. How can you deploy code in Salesforce? 
+There are three deployment methods in Salesforce:
+Change sets
+Metadata API
+Ant Migration Tool.
+6. Describe external ID in Salesforce
+A custom field capable of being used in a record as a unique identifier is referred to as an external ID.  One field must be designated as an external ID to import records.
+7. Mention the field data types which can be used as external IDs. 
+Fields capable of being marked as external IDs are:
+Email
+Auto-Number 
+Text 
+Number.
+The notable point is that only custom fields can be used as External IDs. 
+8. Name the different types of reports available in Salesforce? 
+Types of reports available in Salesforce are namely : 
+Matrix reports
+Joined reports 
+Summary reports.
+9. Define WhoID and WhatID in activities.
+Leads or contacts are generally categorized under WhoID. 
+On the other hand, Objects like AccountID or OpportunityID are generally categorized under WhatID. 
+10. How can one utilize Apex code to obtain the User IDs of all currently signed in?
+The global function UserInfo. Get The user can retrieve the IDs of users currently logged in using the user id().
+11. Mention how many records that select query, and a SOSL query can return?
+50,000 is the maximum number of records returned by the SOQL command. However, the complete records returnable under the SOSL command are 2,000. 
+12. Define attribute tag. 
+A custom component's attribute is defined as the attribute tag. As the child of a component tag, it is also easily identifiable.
+13. What do you mean by a Connected App?
+A framework for integrating Salesforce to external apps using standard protocols, Security Assertion Markup Language (SAML), APIs, OAuth, and OpenID connect.
+14.  What do you mean by Change Data Capture?
+Ans: Integrating your salesforce data using a streaming product must be Change Data Capture. You can get real-time updates of Salesforce record changes and corresponding records synchronized in an external data storage. 
+You can also create changes in the salesforce records such as design, delete, undelete, and update operations.
+15.  Explain External Services.
+External Services connect the Salesforce org to an API(External) using any code creating invocable actions within Salesforce. The OpenAPI specifications and declarative tools describe the external API's functionality.
+16. How can you define "Data Skew" in Salesforce? 
+When working with large clients, there are numerous instances where a single user holds up to 10,000 records. This condition in Salesforce is referred to as "ownership data skew." 
+As a result of Data Skew, these users have to face several performance issues on performing updates.
+17. Name the fields automatically indexed in Salesforce? 
+The fields automatically indexed under Salesforce are as follows : 
+Audit dates 
+Custom fields 
+Primary keys 
+Foreign keys.
+18. How many assignment rules can you mention in a lead or case?
+At a time, there can be only one active rule. 
+19.  Name the criteria for "time-dependent workflow action" that one cannot create. 
+For "created, and every time it's edited," the creation of time-dependent workflow action is not allowed.
+20. Name the custom settings type in Salesforce? 
+Hierarchy custom settings 
+List custom settings.
+21. Mention the possible advantages of using custom settings? 
+Hierarchical custom settings services focus on providing specific profiles or users with "personalizing settings" using hierarchical logic built-in.
+On the other hand, List custom settings provide a set of static, reusable data which can be accessed irrespective of any user within the organization. 
+22. Write the character limit at the customs level? 
+There is a maximum allowance of 5000 custom levels for an organization, and the characters can reach a maximum of 1000 in length. 
+23. There are three types of binding used in visual force. Name them.
+The three types of bondings used in Salesforce are namely, 
+Component bindings
+Data bindings
+Action binding.
+24. What are the areas where Users can use Apex? 
+The areas under which Apex can be employed for use are 
+Management of Email services
+For the creation of web services
+Result of custom transaction logic 
+Custom logic can be attached to another operation
+Admin can also create complex business processes.
+25. What are the various methods of Batch apex class?
+Start
+Execute 
+Finish.
+These are the three known methods used to deploy data batchable interfaces by batch Apex class.
+26. Write a few lines about the Apex programming language?
+The Apex programming language is
+Very handy and easy when it comes to using
+Very easy when it comes to testing
+It is integrated
+Version 
+Lastly, it's a multi-tenant Aware Application.
+27. What are the benefits of API-led connectivity?
+The key benefits of API-led connectivity include:
+Reusability
+Discoverability
+Availability and resiliency
+Clear contact between systems
+Visibility and security.
+28. Write all the examples of non-deterministic Force.com formula fields? 
+Examples of non-deterministic fields in Salesforce include : 
+Formula fields containing reference span over other entities.
+Areas comprising dynamic date functions. 
+Look up fields.
+ 
+ 
+29. State the difference between DML statement [Database.insert()] and [ insert ] call?
+The command [insert] is used if an error occurs in any record, a [System. Dm; Exception: Insert Failed] exception will be thrown, and the system will insert no records. If we allow partial bulky options, we use [Database.insert()] instead.
+30. What are REST API Composite Resources?
+The REST API Composite Resources includes
+Composite Graphs
+Batch
+sObject Collections
+sObjects Tree 
+Composite.
+31. How can you use Asynchronous Apex?
+Asynchronous Apex can be used in the given ways 
+Future Methods
+Queueable Apex 
+Scheduled Apex 
+Batch Apex.
+32. Name the maximum possible number of callouts in a single apex transaction to an external service?
+There is an allowance for 100 callouts to external service in a single Apex transaction. The Governor determines this limit. 
+34. What is the job of a salesforce developer?
+Understanding the platform and having a complete experience of it are the two prior requirements a salesforce developer must possess. To create apps, the salesforce developers leverage frameworks like lightning components, visual force, and Apex.
+35. Write the required skills of a salesforce developer. 
+The necessary skills a salesforce developer must possess are 
+Data management
+Automation
+Security
+Change management
+User management
+Change management.
+36. How can you call a controller method from Javascript?
+Take a look at the given piece of code to understand how a controller method is called using the action function.
+<script>
+function JSmethodCallFromAnyAction()
+{
+callfromJS();
+}
+</apex:page>
+37. What are the two common types of web services? 
+The two commonly known types of web services include:
+RESTful web services
+Soap web services.
+38. Define WSDL.
+An XML document describing a web service is called WSDL. Two major types of WSDL in Salesforce include:
+Partner WSDL
+Enterprise WSDL.
+39. How can someone generate a WSDL file?
+It takes several steps to generate a WSDL file. 
+Setup
+Develop
+Apex classes
+Click apex class
+Click generate WSDL 
+Generate the code from the class
+Save the code as a .wsdl file into your system.
+ 
+ 
+40. How many ways do you know of XML parsing?
+There are 2 two ways for XML parsing
+XML streams
+XML DOM.
+41. Define Custom labels in Salesforce.
+The values of custom texts accessible from visual force pages or Apex classes are called Custom labels. 
+The primary benefit of custom labels includes creating values in any language that Salesforce supports. Thus, creating multilingual applications is a significant benefit to several users. 
+1. What are Webservices?
+A functionality or code that helps us with integration is the definition of web services. However, Webservices can expand in meaning and represent various services.
+2. What are the types of APIs you get on Salesforce?
+REST API, SOAP API, Bulk API, Tooling API, Metadata API, Streaming API, etc. 
+3. What is Protocol?
+Both ends of the communication channel implement and accept a set of rules. It ensures the accurate exchange of information.
+4. What do Call In and Call Out mean to you?
+Call In means when a company exposes its web services to other systems, and Call Out means when other systems invoke or consume a company's web services.
+5. What do you understand about remote site settings?
+The remote site settings allow us to authorize the user end integration. 
+6. How can someone access SOAP?
+One can use only WSDL files to access SOAP. None can access a SOAP without a WSDL file because SOAP uses XML as the message format.
+ 
+7. How can someone read root elements in XML DOM?
+By using the get root element.
+8. How can someone read between tags?
+By using gettext.
+1. What is Integration?
+Integration is a process of connecting two or more applications. Enterprise systems use many applications, many or most of which are not designed to work with one another out of the box. Each application can have data, business logic, presentation, and security layers, all of which are possible targets for integration.
+2. What is webservices?
+Web service is a standardized medium to propagate communication between the client and server applications on the World Wide Web. Web services provide a common platform that allows multiple applications built on various programming languages to have the ability to communicate with each other.
+Webservices are functionality or code which helps us to do integration. Web services are open standard (XML, SOAP, HTTP, etc.) based web applications that interact with other web applications for the purpose of exchanging data.
+Type of Web Service
+There are mainly two types of web services.
+SOAP web services.
+RESTful web services
+
+3. Difference between JSON Vs XML?
+Here is some difference between JSON and XML. 
+JSON
+XML
+JavaScript Object Notation has a type like String, number, Object, Boolean
+Extensible markup language is type less, and should be string
+It is a way of representing objects
+It is a markup language and uses tag structure to represent data items
+Retrieving value is easy
+Retrieving value is difficult
+It does not provide any support for namespaces.
+It supports namespaces.
+It is less secured
+It is more secure than JSON
+Guidelines: Key – Enclosed in double Quotes(String) Value – Can be any datatype {} – Object [] – Array , – Separates data element within Object
+Guidelines: Element – <lastname>hours</lastname> Element Definition: <xs:element name=”lastname” type=”xs:string”/> Attribute – <lastname lang=”EN”>Smith</lastname> Attribute Definition – <xs:attribute name=”lang” type=”xs:string”/>
+
+4. What is REST API?
+A REST API is also known as RESTful API. REST API is an application programming interface (API) that conforms to the constraints of REST architectural style and allows for interaction with RESTful web services.
+RESTful API is an interface that two computer systems use to exchange information securely over the internet. REST API has a lightweight request and response framework. It is a simple, easy-to-use, and powerful web service based on RESTful principles. REST API supports both XML and JSON. Rest resource is referenced using URI, abstraction of information, and access using HTTP methods.
+5. What is SOAP API?
+SOAP is the Simple Object Access Protocol, a messaging standard defined by the World Wide Web Consortium and its member editors. SOAP uses an XML data format to declare its request and response messages, relying on XML Schema and other technologies to enforce the structure of its payloads.
+It uses a Web Services Description Language (WSDL) file to rigorously define the parameters for accessing data through the API.
+SOAP API supports XML only.
+Because SOAP API uses the WSDL file as a formal contract between the API and consumer, it’s great for writing server-to-server integrations.
+6. What is the difference between SOAP and REST?
+Here is the difference between SOAP and REST API.
+SOAP API
+REST API
+Relies on SOAP protocol
+Relies on REST architecture using HTTP
+Transports data in XML
+Transports data in JSON or XML
+Highly structured/ typed
+Less structured? Less bulky data
+Handles large data loads
+Works well with JavaScript
+Designed with large enterprise application in mind
+Designed with mobile devices in mind
+
+7. What all Integration options are available in Salesforce?
+There are lots of Integration options available in Salesforce. Some of them are below.
+API Name
+Protocol
+Data Format
+Communication
+REST API
+REST
+JSON, XML
+Synchronous
+SOAP API
+SOAP (WSDL)
+XML
+Synchronous
+Chatter REST API
+REST
+JSON, XML
+Synchronous (photos are processed asynchronously)
+Analytics REST API
+REST
+JSON, XML
+Synchronous
+Bulk API
+REST
+CSV, JSON, XML
+It’s Asynchronous. Handle large data loads with batching.
+Metadata API
+SOAP (WSDL)
+XML
+Asynchronous. Retrieve, deploy, and modify metadata.
+Streaming API
+Bayeux
+JSON
+Asynchronous. Push notifications from Salesforce to subscribing applications/entities
+(replaces polling).
+Apex REST API
+REST
+JSON, XML, Custom
+Synchronous
+Apex SOAP API
+SOAP (WSDL)
+XML
+Synchronous
+
+8. What is WSDL?
+WSDL (Web Services Description Language) is an XML document that describes a web service. There are two types of WSDL in Salesforce:
+Enterprise WSDL
+Partner WSDL
+9. What is the difference between Enterprise WSDL and Partner WSDL?
+Here is the difference between Enterprise WDSL and Partner WDSL.
+Enterprise WDSL
+Partner WSDL
+Strongly Typed
+Loosely Typed
+Tied to a specific configuration of Salesforce
+Useful for any configuration of Salesforce
+Changes if custom field or custom objects are added to your organization
+Does not changes if custom field or custom objects are added to an organization’ Salesforce configuration
+Primarily for Customer
+Primarily for Partner
+
+10. What is SoapUI? How to Use SoapUI to Test Salesforce WebService?
+SOAP UI is a very popular API testing tool especially when we talk about SOAP APIs. So, in this tutorial, we’re going to see how we can connect with Salesforce Org using SOAP UI and we will call a standard salesforce soap API and have a look at the response. Check below recording how to test Salesforce webservice using SoapUI.
+11. What are integration patterns in salesforce?
+When you implement Salesforce, you frequently need to integrate it with other applications. Although each integration scenario is unique, there are common requirements and issues that developers must resolve.
+12. Different types of Integration patterns available in Salesforce?
+Pattern
+Scenario
+Remote Process Invocation—Request and Reply
+Salesforce invokes a process on a remote system, waits for completion of that process, and then tracks state based on the response from the remote system.
+Remote Process Invocation—Fire and Forget
+Salesforce invokes a process in a remote system but doesn’t wait for completion of the process. Instead, the remote process receives and acknowledges the request and then hands off control back to Salesforce.
+Batch Data Synchronization
+Data stored in Lightning Platform is created or refreshed to reflect updates from an external system, and when changes from Lightning Platform are sent to an external system. Updates in either direction are done in a batch manner.
+Remote Call-In
+Data stored in Lightning Platform is created, retrieved, updated, or deleted by a remote system.
+UI Update Based on Data Changes
+The Salesforce user interface must be automatically updated as a result of changes to Salesforce data.
+Data Virtualization
+Salesforce accesses external data in real time. This removes the need to persist data in Salesforce and then reconcile the data between Salesforce and the external system.
+
+
+13. What are remote site settings?
+Remote site settings is used to authorize the endpoint and allow us to whom integrate(end user)
+Connected App And OAuth
+14. What is a Connected App?
+A connected app is a framework that enables an external application to integrate with Salesforce using APIs and standard protocols, such as SAML, OAuth, and OpenID Connect. Connected apps use these protocols to authenticate, authorize, and provide single sign-on (SSO) for external apps. The external apps that are integrated with Salesforce can run on the customer success platform, other platforms, devices, or SaaS subscriptions.
+15. What is OAuth?
+OAuth is short for open authorization. OAuth 2.0 is a framework that allows for a secure way for systems to establish trust with one another. The end goal is to obtain an access token that can be used to access protected resources without ever providing your username or password to the other system.
+16. What different OAuth2.0 Authorization flows are available in Salesforce?
+You decide! Salesforce supports the following flows
+SAML Bearer Assertion
+JWT Bearer Token
+Refresh Token
+Web Server Authentication
+Username-Password
+User-Agent
+Device Authentication
+Asset Token
+SAML Assertion
+17. What is JWT flow in Salesforce?
+Secure server-to-server integration without real time user involvement. Client specifies the user in a JSON web token (JWT) or SAML format XML assertion and proves its own identity by appending a signature. JWT Bearer token flow is Ideal for applications which access sfdc only through API as there is no UI involved. For example ETL tools or middleware.
+JWT Structure
+When we talk about JSON Web Token, it is consist of 3 parts
+Headers – Which contains the algorithm which will be used to sign the request {"alg":"RS256"}
+Payload – This contains claims information which is an object containing information about user and additional data. Claims are set using parameters- {"Iss,aud,sub,exp"}
+Signature – Signature consists of 3 parts and the structure is given below
+<headerbase64encodedurl>.<claimsbase64encodedclaims>.<signature(uses algorithm like RS 256)>
+18. What is web service flow in Salesforce?
+Allows apps with a secure client server (one which can protect a secret or private key) to access protected resources. This flow is mainly used by applications hosted on web servers. If an external application is trusted and hosted on a secure server and can securely store client_secret, then flow can be used. This flow is used mainly to build web applications.
+19. What is Named Credential and what is its use of it?
+A named credential specifies the URL of a callout endpoint and its required authentication parameters in one definition. To simplify the setup of authenticated callouts, specify a named credential as the callout endpoint.
+20. What is OpenID Connect?
+OpenID Connect is a simple identity layer on top of the OAuth 2.0 protocol. It allows Clients to verify the identity of the End-User based on the authentication performed by an Authorization Server, as well as to obtain basic profile information about the End-User. Learn more here.
+OpenID Connect Flow
+
+
+21. Difference between OpenID and OAuth?
+OAuth 2.0
+OpenID Connect
+Granting access to your API
+Logging the user in
+Getting access to user data in other systems
+Making your accounts available in other systems
+This is primarily used for Authorization
+This is primarily used for Authentication
+
+Streaming API and Events
+22. What is Streaming API? Explain the different mechanisms of Steaming API.
+Streaming API enables the streaming of events using push technology and provides a subscription mechanism for receiving events in near real-time. The Streaming API subscription mechanism supports multiple types of events, including PushTopic events, generic events, platform events, and Change Data Capture events
+
+
+
+Learn about terms used for Streaming API
+Term
+Description
+Event
+The creation, update, delete, or undelete of a record. Each event might trigger a notification.
+Notification
+A message in response to an event. The notification is sent to a channel to which one or more clients are subscribed.
+PushTopic
+A PushTopic triggers notifications for changes in Salesforce records resulting from a create, update, delete, or undelete operation. A PushTopic notification is based on the criteria that you specify in the PushTopic record and the SOQL query that you define. Only the fields specified in the query are included in the notification. The PushTopic defines a subscription channel.
+Channel
+A stream of events to which a client can subscribe to receive event notifications.
+Event Bus
+A conduit in which a publisher sends an event notification. Event subscribers subscribe to a channel in the event bus to receive event notifications. The event bus supports replaying stored event messages
+Platform Event
+A Salesforce entity that represents the definition of the custom data that you send in a platform event message. You create a platform event and define its fields in Salesforce. The subscription channel is based on the platform event name.
+Change Data Capture Event
+Similar to a PushTopic, Change Data Capture triggers notifications for changes in Salesforce records resulting from a create, update, delete, or undelete operation. Unlike a PushTopic, Change Data Capture sends all changed fields of a record and doesn’t require you to specify the fields in a query.
+Also, Change Data Capture sends information about the change in headers.
+
+23. What is Change Data Capture?
+Change Data Capture is a streaming product on the Lightning Platform that enables you to efficiently integrate your Salesforce data with external systems. With Change Data Capture, you can receive changes of Salesforce records in real-time and synchronize corresponding records in an external data store. Change Data Capture publishes events for changes in Salesforce records corresponding to create, update, delete, and undelete operations.
+24. What is the Tooling API? Give one example of when you used it.
+Use Tooling API to build custom development tools or apps for Lightning Platform applications. Tooling API’s SOQL capabilities for many metadata types allow you to retrieve smaller pieces of metadata. Smaller retrieves improve performance, which makes Tooling API a better fit for developing interactive applications. Tooling API provides SOAP and REST interfaces.
+25. What is Salesforce Connect?
+Salesforce Connect is a powerful App Cloud integration service, which enables users of Salesforce applications to seamlessly access and handle data stored in external sources, without leaving the Salesforce native environment. Instead of copying the data into your org, you can use external objects to access the data in real time via web service callouts.
+When to use Salesforce Connect?
+Display, Search, Modify Data stored in external System.
+Don’t want duplicate data storage in Salesforce.
+Small amount of data on real time
+Access to latest data
+Access like Salesforce Object
+
+26. What is REST API Composite Resources
+let us see what is composite resources. We have seen standard Salesforce rest APIs which we use to create or update data in salesforce from an external system these API‘s we do one at a time. Composite resources is an enhanced form of rest API which executes a series of rest API requests in a single call. It helps you to do multiple operations like read create update and delete Salesforce data in a single callout
+
+Q. What is integration?
+Answer: Integration is a process of connecting two applications.A typical enterprise uses many applications, many or most of which are not designed to work with one another out of the box. Integrating separate but related apps helps organizations achieve greater levels of operational consistency, efficiency, and quality. Each application can have data, business logic, presentation, and security layers, all of which are possible targets for integration. This page is an overall launch point for exploring the various integration options related to Force.com and other Salesforce platform technologies.
+Q. Why do we need integration in Salesforce?
+Answer : Integration comes into picture when some interaction is required from the external system. Let us take an example, we want to validate the address of the account record. This can be done using google address validation or smarty street API integration.
+Q. What Are The Types of SOQL Statements in SalesForce?
+Answer : Salesforce Object Query Language is used to query records from the database.com based on the requirement.
+There are 2 types of SOQL Statements.
+Static SOQL
+Dynamic SOQL
+ 
+Q. What is SOAP?
+Answer : A protocol that defines a uniform way of passing XML-encoded data. SOAP Stands for Simple Object Access Protocol.
+Q. How many types of API’s available in Salesforce?
+Answer : SOAP API, REST API, Bulk API, and Streaming API.
+Q. Difference between SOQL Vs SOSL in salesforce?
+Answer : SOQL- Salesforce Object Query Language
+   Using SOQL we can Search only on one object one time.
+    We can query on all fields of any data type
+    We can use SOQL in the Triggers and the classes.
+    We can perform DML operations on SQL query results.
+SOSL(Salesforce Object Search Language)
+Using SOSL we can search on many objects at one time.
+We can query only on fields whose data type is text, phone, and Email.
+We cannot use it in Triggers but can in classes.
+We cannot perform DML operations on search results.
+Q. How will SOAP and REST will Communicate?
+Answer : SOAP will communicate through WSDL file
+REST will communicate through HTTP file
+Q. What Is Webservices ?
+Answer : Webservices is a functionality or code which helps us to do integration.
+Q. When to Use REST API?
+Answer : REST API provides a powerful, convenient, and simple REST-based web services interface for interacting with Salesforce. Its advantages include ease of integration and development, and it’s an excellent choice of technology for use with mobile applications and web projects. For certain projects, you may want to use REST API with other Salesforce REST APIs. To build UI for creating, reading, updating, and deleting records, including building UI for list views, actions, and dependent picklists, use User Interface API. To build UI for Chatter, communities, or recommendations, use Chatter REST API. If you have many records to process, consider using Bulk API, which is based on REST principles and optimized for large sets of data.
+Q. When to Use SOAP API?
+Answer : SOAP API provides a powerful, convenient, and simple SOAP-based web services interface for interacting with Salesforce. You can use SOAP API to create, retrieve, update, or delete records. You can also use SOAP API to perform searches and much more. Use SOAP API in any language that supports web services.
+For example, you can use SOAP API to integrate Salesforce with your org’s ERP and finance systems. You can also deliver real-time sales and support information to company portals and populate critical business systems with customer information.
+Q. When to Use Chatter REST API?
+Answer : Use Chatter REST API to display Chatter feeds, users, groups, and followers, especially in mobile applications. Chatter REST API also provides programmatic access to files, recommendations, topics, notifications, Data.com purchasing, and more. Chatter REST API is similar to APIs offered by other companies with feeds, such as Facebook and Twitter, but it also exposes Salesforce features beyond Chatter.
+Use Chatter REST API to display Chatter feeds, users, groups, and followers, especially in mobile applications. Chatter REST API also provides programmatic access to files, recommendations, topics, notifications, Data.com purchasing, and more. Chatter REST API is similar to APIs offered by other companies with feeds, such as Facebook and Twitter, but it also exposes Salesforce features beyond Chatter.
+Q. What is WSDL ?
+Answer : WSDL (Web Services Description Language) is an XML document that describes a web service. WSDL is derived from Microsoft’s Simple Object Access Protocol (SOAP) and IBM’s Network Accessible Service Specification Language (NASSL). WSDL replaces both NASSL and SOAP as the means of expressing business services in the UDDI registry. It is used in combination with SOAP and XML Schema to provide web services over the Internet. A client program connecting to a web service can read the WSDL to determine what functions are available on the server.
+Q. How to generate a WSDL file?
+Answer : Attend Setup -> Develop -> apex categories
+Click on Apex category
+Click on Generate WSDL button
+Generate WSDL code from category
+Save as .wsdl come in your system
+Q. Can we tend to do a callout from flow synchronously?
+Answer : No. Like triggers, we tend to not do callouts from apex action in Flow.
+Callout ought to be done asynchronously like mistreatment future methodology.
+Q. Difference between LiveMessage and Digital Engagement electronic communication?
+Answer : Salesforce Classic LiveMessage :
+Salesforce Classic LiveMessage is in a very managed package.
+Supports Short Code.
+Q. Digital Engagement Messaging
+Answer : Digital Engagement electronic communication resides in Lightning and is provisioned via a Permission Set License.
+Short code isn’t supported.
+Q. What is Asynchronous Apex?
+Answer : Asynchronous Apex is employed to run a method in a very separate thread at a later time in the background. principally this is employed wherever a massive volume of information process is needed or supported HTTP callout some update in record is needed.
+Q. What area unit kinds of Asynchronous Apex?
+Answer : Majorly this is often four sorts that area units as follows.
+Queueable Apex
+scheduled Apex
+Batch Apex
+Future ways
+Q. Why do we tend to not pass sObject in the future method?
+Answer : Future methodology area unit dead in its own time. sObject may modify between the time it’s known as the strategy and therefore the time it executes.
+Q. What is the future decision limit?
+Answer : Most variety of future methodology invocations per a 24-hour amount is 250,000 or the quantity of user licenses in organization increased by two hundred, whichever is larger.
+Q. Can I start a batch job upon finishing the other batch job?
+Answer : Yes, we will begin a replacement batch once the initial batch is finishing. This is often a draining end methodology. Example: we wish to send email to all or any client that is a processed mistreatment batch.
+Q. How to delete previous scheduled jobs?
+Answer : We’ve to purge previous job records mistreatment purgeOldAsyncJobs methodology. Code are going to be like below
+Syntax : world void finish(Database.BatchableContext BC)
+Q.How to delete future scheduled jobs?
+Answer : We should always delete future job mistreatment System.abortJob. we’ve to urge scheduled job mistreatment CronTrigger and so pass id to System.abortJob.
+Syntax : for(CronTrigger ct:[SELECT Id FROM CronTrigger])
+
